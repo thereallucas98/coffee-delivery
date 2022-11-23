@@ -2,7 +2,9 @@ import styled from 'styled-components'
 
 export const HomeContainer = styled.div`
   width: 100%;
+`
 
+export const Header = styled.div`
   display: flex;
   justify-content: space-between;
   gap: 3rem;
@@ -37,6 +39,29 @@ export const CardWrapper = styled.div`
   grid-template-columns: repeat(2, 1fr);
   column-gap: 2.5rem;
   row-gap: 1rem;
+`
+
+export const MainContent = styled.main`
+  margin-top: 2rem;
+`
+
+export const MainTitle = styled.h4`
+  font-family: 'Baloo 2';
+  font-weight: 800;
+  font-size: 2rem;
+  line-height: 2.6rem;
+  color: ${({ theme }) => theme.BASE_SUBTITLE};
+`
+
+export const CoffeeList = styled.div`
+  width: 100%;
+
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  column-gap: 0.5rem;
+  row-gap: 2rem;
+
+  margin-top: 3.5rem;
 `
 
 /**

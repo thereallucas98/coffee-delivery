@@ -2,9 +2,12 @@ import { ShoppingCart, Package, Timer, Coffee } from 'phosphor-react'
 import { useTheme } from 'styled-components'
 
 import CoffeeImg from '../../assets/images/coffee.png'
+import { coffees } from '../../data/coffees'
+import { CoffeeCard } from './components/CoffeeCard'
 
 import {
   CardContainer,
+  Header,
   CardTitle,
   CardWrapper,
   HomeContainer,
@@ -12,6 +15,9 @@ import {
   InfoWrapper,
   SubTitle,
   Title,
+  MainContent,
+  MainTitle,
+  CoffeeList,
 } from './styles'
 
 interface CardProps {
@@ -72,26 +78,40 @@ function Card({ title, icon, bgColor }: CardProps) {
 export function Home() {
   return (
     <HomeContainer>
-      <InfoWrapper>
-        <Title>{'Encontre o café perfeito\npara qualquer hora do dia\n'}</Title>
-        <SubTitle>
-          {
-            'Com o Coffee Delivery você recebe seu café onde estiver, a\nqualquer hora'
-          }
-        </SubTitle>
+      <Header>
+        <InfoWrapper>
+          <Title>
+            {'Encontre o café perfeito\npara qualquer hora do dia\n'}
+          </Title>
+          <SubTitle>
+            {
+              'Com o Coffee Delivery você recebe seu café onde estiver, a\nqualquer hora'
+            }
+          </SubTitle>
 
-        <CardWrapper>
-          {cardOptions.map((item) => (
-            <Card
-              title={item.title}
-              icon={item.icon}
-              bgColor={item.bgColor}
-              key={`${item.icon}-${item.icon}`}
-            />
+          <CardWrapper>
+            {cardOptions.map((item) => (
+              <Card
+                title={item.title}
+                icon={item.icon}
+                bgColor={item.bgColor}
+                key={`${item.icon}-${item.icon}`}
+              />
+            ))}
+          </CardWrapper>
+        </InfoWrapper>
+        <img src={CoffeeImg} alt="Coffee Delivery" />
+      </Header>
+
+      <MainContent>
+        <MainTitle>Nossos cafés</MainTitle>
+
+        <CoffeeList>
+          {coffees.map((coffee) => (
+            <CoffeeCard key={coffee.id} coffee={coffee} />
           ))}
-        </CardWrapper>
-      </InfoWrapper>
-      <img src={CoffeeImg} alt="Coffee Delivery" />
+        </CoffeeList>
+      </MainContent>
     </HomeContainer>
   )
 }
