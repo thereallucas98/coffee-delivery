@@ -11,6 +11,7 @@ export const defaultTheme = {
   BASE_BUTTON: '#E6E5E5',
   BASE_INPUT: '#EDEDED',
   BASE_CARD: '#F3F2F2',
+  BASE_ERROR: '#f84747',
 
   PURPLE: '#8047F8',
   PURPLE_DARK: '#4B2995',

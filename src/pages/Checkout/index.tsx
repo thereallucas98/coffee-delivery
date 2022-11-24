@@ -1,7 +1,13 @@
+import { Coffees } from './components/Coffees'
+import { OrderForm } from './components/OrderForm'
+
+import { CompleteOrderContainer } from './styles'
+
 export function Checkout() {
   return (
-    <div>
-      <h1>Checkout Page</h1>
-    </div>
+    <CompleteOrderContainer>
+      <OrderForm />
+      <Coffees />
+    </CompleteOrderContainer>
   )
 }
