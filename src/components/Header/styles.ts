@@ -1,90 +1,96 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 export const HeaderContainer = styled.header`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  width: 100%;
+  height: 6.5rem;
 
-  gap: 1rem;
-`
+  background: ${({ theme }) => theme.colors['base-background']};
 
-export const OptionsWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
 
-  gap: 0.75rem;
-`
+  position: sticky;
 
-export const LocationWrapper = styled.div`
-  height: 2.375rem;
+  top: 0;
+  left: 0;
 
-  padding: 0.5rem;
+  z-index: 5;
 
-  border-radius: 0.375rem;
-  background-color: ${({ theme }) => theme.PURPLE_LIGHT};
+  > div {
+    width: 100%;
 
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-`
-
-export const LocationLabel = styled.span`
-  color: ${({ theme }) => theme.PURPLE_DARK};
-  font-size: 0.875rem;
-  line-height: 1.125rem;
-`
-
-export const CartWrapper = styled.button`
-  height: 2.375rem;
-
-  padding: 0.5rem;
-
-  border: 0;
-  border-radius: 0.375rem;
-  background-color: ${({ theme }) => theme.YELLOW_LIGHT};
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  cursor: pointer;
-
-  transition: all 0.35s ease-in-out;
-
-  position: relative;
-
-  &:hover {
-    background-color: ${({ theme }) => theme.YELLOW_DARK};
-
-    > div {
-      background-color: ${({ theme }) => theme.YELLOW};
-    }
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
 `
 
-export const AccountWrapper = styled.div`
-  position: absolute;
-
-  top: -20%;
-  left: 70%;
-
-  width: 1.25rem;
-  height: 1.25rem;
-
-  background-color: ${({ theme }) => theme.YELLOW_DARK};
-
-  border-radius: 50%;
-
+export const HeaderButtonsContainer = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
-
-  transition: all 0.35s ease-in-out;
+  gap: 0.75rem;
 `
 
-export const AccountLabel = styled.span`
-  color: ${({ theme }) => theme.WHITE};
-  font-size: 0.75rem;
-  line-height: 0.9475rem;
+interface HeaderButtonProps {
+  variant: 'purple' | 'yellow'
+}
+
+export const HeaderButton = styled.button<HeaderButtonProps>`
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+
+  min-width: 2.3rem;
+  height: 2.3rem;
+
+  border-radius: 6px;
+  border: none;
+
+  padding: 0 0.5rem;
+
+  position: relative;
+
+  cursor: inherit;
+
+  span {
+    position: absolute;
+
+    width: 1.25rem;
+    height: 1.25rem;
+
+    border-radius: 50%;
+
+    top: calc(-1.25rem / 2);
+    right: calc(-1.25rem / 2);
+
+    color: ${({ theme }) => theme.colors['base-white']};
+    font-size: 0.75rem;
+    font-weight: 700;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  font-size: ${({ theme }) => theme.textSizes['text-regular-s']};
+
+  ${({ variant }) => css`
+    background: ${({ theme }) => theme.colors[`brand-${variant}-light`]};
+    color: ${({ theme }) => theme.colors[`brand-${variant}-dark`]};
+
+    span {
+      background: ${({ theme }) => theme.colors[`brand-${variant}-dark`]};
+    }
+  `}
+
+  ${({ variant }) =>
+    variant === 'purple' &&
+    css`
+      svg {
+        color: ${({ theme }) => theme.colors[`brand-${variant}`]};
+      }
+    `}
 `

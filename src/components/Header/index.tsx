@@ -1,38 +1,35 @@
 import { MapPin, ShoppingCart } from 'phosphor-react'
-import { useTheme } from 'styled-components'
+import { NavLink } from 'react-router-dom'
 
-import LogoCoffeeDelivery from '../../assets/logo.svg'
+import coffeeLogoImg from '../../assets/coffee-delivery-logo.svg'
 
-import {
-  AccountLabel,
-  AccountWrapper,
-  CartWrapper,
-  HeaderContainer,
-  LocationLabel,
-  LocationWrapper,
-  OptionsWrapper,
-} from './styles'
+import { useCart } from '../../hooks/useCart'
+
+import { HeaderButton, HeaderButtonsContainer, HeaderContainer } from './styles'
 
 export function Header() {
-  const { PURPLE, YELLOW } = useTheme()
+  const { cartQuantity } = useCart()
 
   return (
     <HeaderContainer>
-      <img src={LogoCoffeeDelivery} alt="Coffee Delivery" />
+      <div className="container">
+        <NavLink to="/">
+          <img src={coffeeLogoImg} alt="" />
+        </NavLink>
 
-      <OptionsWrapper>
-        <LocationWrapper>
-          <MapPin size={22} weight="fill" color={PURPLE} />
-          <LocationLabel>João Pessoa, PB</LocationLabel>
-        </LocationWrapper>
-
-        <CartWrapper>
-          <ShoppingCart size={22} weight="fill" color={YELLOW} />
-          <AccountWrapper>
-            <AccountLabel>1</AccountLabel>
-          </AccountWrapper>
-        </CartWrapper>
-      </OptionsWrapper>
+        <HeaderButtonsContainer>
+          <HeaderButton variant="purple">
+            <MapPin size={20} weight="fill" />
+            João Pessoa - PB
+          </HeaderButton>
+          <NavLink to="/completeOrder">
+            <HeaderButton variant="yellow">
+              {cartQuantity >= 1 && <span>{cartQuantity}</span>}
+              <ShoppingCart size={20} weight="fill" />
+            </HeaderButton>
+          </NavLink>
+        </HeaderButtonsContainer>
+      </div>
     </HeaderContainer>
   )
 }

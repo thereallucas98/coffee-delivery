@@ -6,27 +6,29 @@ export interface QuantityInputContainerProps {
 
 export const QuantityInputContainer = styled.div<QuantityInputContainerProps>`
   flex: 1;
-  background: ${({ theme }) => theme.BASE_BUTTON};
+
+  background: ${({ theme }) => theme.colors['base-button']};
+  border-radius: 6px;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
-
   gap: 4px;
-  border-radius: 6px;
 
   input {
     text-align: center;
+    color: ${({ theme }) => theme.colors['base-title']};
+
     width: 100%;
 
     background: none;
     border: none;
 
-    color: ${({ theme }) => theme.BASE_TITLE};
-
     &:focus {
       outline: none;
     }
   }
+
   ${({ size }) =>
     size === 'medium' &&
     css`
@@ -49,10 +51,7 @@ export const IconWrapper = styled.button.attrs({
   border: none;
   background: none;
 
-  color: ${({ theme }) => theme.PURPLE};
-
-  cursor: pointer;
-
+  color: ${({ theme }) => theme.colors['brand-purple']};
   transition: 0.4s;
 
   &:disabled {
@@ -60,6 +59,6 @@ export const IconWrapper = styled.button.attrs({
   }
 
   &:not(:disabled):hover {
-    color: ${({ theme }) => theme.PURPLE_DARK};
+    color: ${({ theme }) => theme.colors['brand-purple-dark']};
   }
 `

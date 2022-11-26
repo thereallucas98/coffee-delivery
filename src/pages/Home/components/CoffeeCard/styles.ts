@@ -1,22 +1,24 @@
 import styled from 'styled-components'
+import { RegularText, TitleText } from '../../../../components/Typography'
 
-export const CoffeCardContainer = styled.div`
+export const CoffeeCardContainer = styled.div`
   width: 100%;
 
   border-radius: 6px 36px 6px 36px;
-  background-color: ${({ theme }) => theme.BASE_CARD};
+  background: ${({ theme }) => theme.colors['base-card']};
 
   padding: 1.25rem;
   padding-top: 0;
 
   display: flex;
-  align-items: center;
-  justify-content: center;
   flex-direction: column;
+  align-items: center;
+  text-align: center;
 
   img {
     width: 7.5rem;
     height: 7.5rem;
+
     margin-top: -1.25rem;
   }
 `
@@ -31,48 +33,42 @@ export const Tags = styled.div`
 
   margin-top: 1rem;
   margin-bottom: 1.25rem;
+
   flex-wrap: wrap;
 
   span {
-    padding: 0.25rem 0.5rem;
+    border-radius: 999px;
+    background: ${({ theme }) => theme.colors['brand-yellow-light']};
 
-    border-radius: 8px;
-    background-color: ${({ theme }) => theme.YELLOW_LIGHT};
-
-    font-family: 'Roboto';
+    color: ${({ theme }) => theme.colors['brand-yellow-dark']};
+    font-size: ${({ theme }) => theme.textSizes['components-tag']};
     font-weight: 700;
-    font-size: 0.625rem;
-    line-height: 0.8125rem;
-    color: ${({ theme }) => theme.YELLOW_DARK};
     text-transform: uppercase;
+
+    padding: 0.25rem 0.5rem;
   }
 `
 
-export const Name = styled.span`
-  font-family: 'Baloo 2';
+export const Name = styled(TitleText).attrs({
+  size: 's',
+  color: 'subtitle',
+})`
   font-weight: 700;
-  font-size: 1.25rem;
-  line-height: 1.625rem;
-  color: ${({ theme }) => theme.BASE_SUBTITLE};
+  margin-bottom: 0.5rem;
 `
 
-export const Description = styled.span`
-  font-family: 'Roboto';
-  font-weight: 40;
-  font-size: 0.875rem;
-  line-height: 1.1375rem;
-  color: ${({ theme }) => theme.BASE_LABEL};
-
-  text-align: center;
+export const Description = styled(RegularText).attrs({
+  size: 's',
+  color: 'label',
+})`
+  margin-bottom: 2rem;
 `
 
-export const CardFooter = styled.footer`
+export const CardFooter = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
-
-  margin-top: 2rem;
 
   > div {
     display: flex;
@@ -85,10 +81,6 @@ export const CardFooter = styled.footer`
   }
 `
 
-export const CurrencyLabel = styled(Description)``
-
-export const CurrencyValue = styled(Name)``
-
 export const AddCartWrapper = styled.div`
   width: 7.5rem;
 
@@ -97,21 +89,21 @@ export const AddCartWrapper = styled.div`
     height: 2.375rem;
 
     border: none;
+    border-radius: 6px;
+    background: ${({ theme }) => theme.colors['brand-purple-dark']};
 
     display: flex;
     align-items: center;
     justify-content: center;
 
-    border-radius: 6px;
-    background: ${({ theme }) => theme.PURPLE_DARK};
-    color: ${({ theme }) => theme.BASE_CARD};
+    color: ${({ theme }) => theme.colors['base-card']};
 
     margin-left: 0.3rem;
 
     transition: 0.4s;
 
     &:hover {
-      background: ${({ theme }) => theme.PURPLE};
+      background: ${({ theme }) => theme.colors['brand-purple']};
     }
   }
 `

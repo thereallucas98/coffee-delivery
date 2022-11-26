@@ -1,18 +1,20 @@
-import { ShoppingCart } from 'phosphor-react'
 import { useState } from 'react'
+import { ShoppingCart } from 'phosphor-react'
+
 import { QuantityInput } from '../../../../components/QuantityInput'
+import { RegularText, TitleText } from '../../../../components/Typography'
+
+import { useCart } from '../../../../hooks/useCart'
 
 import { formatMoney } from '../../../../utils/formatMoney'
 
 import {
-  AddCartWrapper,
-  CardFooter,
-  CoffeCardContainer,
-  CurrencyLabel,
-  CurrencyValue,
-  Description,
-  Name,
+  CoffeeCardContainer,
   Tags,
+  Name,
+  Description,
+  CardFooter,
+  AddCartWrapper,
 } from './styles'
 
 export interface Coffee {
@@ -39,12 +41,21 @@ export function CoffeeCard({ coffee }: CoffeeProps) {
     setQuantity((state) => state - 1)
   }
 
+  const { addCoffeeToCart } = useCart()
+
+  function handleAddToCart() {
+    const coffeeToAdd = {
+      ...coffee,
+      quantity,
+    }
+    addCoffeeToCart(coffeeToAdd)
+  }
+
   const formattedPrice = formatMoney(coffee.price)
 
   return (
-    <CoffeCardContainer>
-      <img src={`/coffees/${coffee.photo}`} alt="Americano" />
-
+    <CoffeeCardContainer>
+      <img src={`/coffees/${coffee.photo}`} />
       <Tags>
         {coffee.tags.map((tag) => (
           <span key={`${coffee.id}${tag}`}>{tag}</span>
@@ -56,8 +67,10 @@ export function CoffeeCard({ coffee }: CoffeeProps) {
 
       <CardFooter>
         <div>
-          <CurrencyLabel>R$</CurrencyLabel>
-          <CurrencyValue>{formattedPrice}</CurrencyValue>
+          <RegularText size="s">R$</RegularText>
+          <TitleText size="m" color="text" as="strong">
+            {formattedPrice}
+          </TitleText>
         </div>
 
         <AddCartWrapper>
@@ -66,12 +79,11 @@ export function CoffeeCard({ coffee }: CoffeeProps) {
             onDecrease={handleDecrease}
             quantity={quantity}
           />
-
-          <button>
+          <button onClick={handleAddToCart}>
             <ShoppingCart weight="fill" size={22} />
           </button>
         </AddCartWrapper>
       </CardFooter>
-    </CoffeCardContainer>
+    </CoffeeCardContainer>
   )
 }
